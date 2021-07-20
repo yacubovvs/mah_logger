@@ -15,22 +15,26 @@ import java.util.Iterator;
 public class MainForm extends JFrame {
     private JPanel mainpanel;
     private JButton stopButton;
-    private JButton pauseButton;
     private JButton startButton;
-    private JButton resumeButton;
     private JButton resetButton;
     private JComboBox comboBoxComPorts;
     private JButton connectButton;
     private JButton updateButton;
     public JPanel graphPanel;
+    private JButton liveButton;
     private boolean isConnected = false;
     SerialConnector serialConnector;
+
+    public void onGetDataString(String string){
+
+    }
+
     public MainForm() {
 
         serialConnector = new SerialConnector(){
             @Override
             public void onStringRead(String string){
-                System.out.println("New string " + string);
+                onGetDataString(string);
             }
         };
 
@@ -43,10 +47,9 @@ public class MainForm extends JFrame {
         setTitle("Новый замер");
 
         setButtonSize(stopButton);
-        setButtonSize(pauseButton);
         setButtonSize(startButton);
-        setButtonSize(resumeButton);
         setButtonSize(resetButton);
+        setButtonSize(liveButton);
 
         addSerialConnectActions();
     }
