@@ -51,7 +51,7 @@
                 <properties/>
                 <border type="none" title="Current V"/>
                 <children>
-                  <component id="47d4e" class="javax.swing.JLabel">
+                  <component id="47d4e" class="javax.swing.JLabel" binding="labelCurrentV">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -69,7 +69,7 @@
                 <properties/>
                 <border type="none" title="Max V"/>
                 <children>
-                  <component id="96349" class="javax.swing.JLabel">
+                  <component id="96349" class="javax.swing.JLabel" binding="labelMaxV">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -87,7 +87,7 @@
                 <properties/>
                 <border type="none" title="Current mA"/>
                 <children>
-                  <component id="59070" class="javax.swing.JLabel">
+                  <component id="59070" class="javax.swing.JLabel" binding="labelCurrentMa">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -105,7 +105,7 @@
                 <properties/>
                 <border type="none" title="Max mA"/>
                 <children>
-                  <component id="f2ea6" class="javax.swing.JLabel">
+                  <component id="f2ea6" class="javax.swing.JLabel" binding="labelMaxma">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -123,7 +123,7 @@
                 <properties/>
                 <border type="none" title="Min V"/>
                 <children>
-                  <component id="3b03b" class="javax.swing.JLabel">
+                  <component id="3b03b" class="javax.swing.JLabel" binding="labelMinV">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -139,9 +139,9 @@
                   <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
-                <border type="none" title="Min mAh"/>
+                <border type="none" title="Min mA"/>
                 <children>
-                  <component id="2ff9c" class="javax.swing.JLabel">
+                  <component id="2ff9c" class="javax.swing.JLabel" binding="labelMinma">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -159,7 +159,7 @@
                 <properties/>
                 <border type="none" title="Selection duration"/>
                 <children>
-                  <component id="e3c2c" class="javax.swing.JLabel">
+                  <component id="e3c2c" class="javax.swing.JLabel" binding="labelSelectionDuration">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -177,7 +177,7 @@
                 <properties/>
                 <border type="none" title="Selection mAh"/>
                 <children>
-                  <component id="58313" class="javax.swing.JLabel">
+                  <component id="58313" class="javax.swing.JLabel" binding="labelSelectionMah">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -193,9 +193,9 @@
                   <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
-                <border type="none" title="Selection avarage V"/>
+                <border type="none" title="Selection average V"/>
                 <children>
-                  <component id="db33e" class="javax.swing.JLabel">
+                  <component id="db33e" class="javax.swing.JLabel" binding="labelSelectionAverageV">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -211,9 +211,9 @@
                   <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
-                <border type="none" title="Selection avarage mAh"/>
+                <border type="none" title="Selection average mA"/>
                 <children>
-                  <component id="7f64a" class="javax.swing.JLabel">
+                  <component id="7f64a" class="javax.swing.JLabel" binding="labelSelectionAveragemA">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -231,7 +231,7 @@
                 <properties/>
                 <border type="none" title="Delta V"/>
                 <children>
-                  <component id="c7899" class="javax.swing.JLabel">
+                  <component id="c7899" class="javax.swing.JLabel" binding="labelDeltaV">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -247,9 +247,9 @@
                   <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
-                <border type="none" title="Delta mAh"/>
+                <border type="none" title="Delta mA"/>
                 <children>
-                  <component id="50c32" class="javax.swing.JLabel">
+                  <component id="50c32" class="javax.swing.JLabel" binding="labelDeltaMa">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>

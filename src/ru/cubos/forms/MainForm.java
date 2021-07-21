@@ -9,10 +9,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Iterator;
 
 
 public class MainForm extends JFrame {
+    private JLabel labelSelectionAverageV;
     private JPanel mainpanel;
     private JButton stopButton;
     private JButton startButton;
@@ -22,6 +22,17 @@ public class MainForm extends JFrame {
     private JButton updateButton;
     public JPanel graphPanel;
     private JButton liveButton;
+    private JLabel labelCurrentMa;
+    private JLabel labelCurrentV;
+    private JLabel labelMaxV;
+    private JLabel labelMinV;
+    private JLabel labelMinma;
+    private JLabel labelMaxma;
+    private JLabel labelDeltaMa;
+    private JLabel labelDeltaV;
+    private JLabel labelSelectionDuration;
+    private JLabel labelSelectionMah;
+    private JLabel labelSelectionAveragemA;
     private boolean isConnected = false;
     SerialConnector serialConnector;
 
@@ -42,8 +53,8 @@ public class MainForm extends JFrame {
         setTitle("RLS CV");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        setSize(600,400);
-        setExtendedState(MAXIMIZED_BOTH);
+        setSize(800,600);
+        //setExtendedState(MAXIMIZED_BOTH);
         setTitle("Новый замер");
 
         setButtonSize(stopButton);
@@ -123,6 +134,54 @@ public class MainForm extends JFrame {
     private void createUIComponents() {
         // TODO: place custom component creation code here
         graphPanel = new GraphPannel();
+    }
+
+    public void setCurrent_ma(float ma){
+        labelCurrentMa.setText("" + ma);
+    }
+
+    public void setCurrent_v(float v){
+        labelCurrentV.setText("" + v);
+    }
+
+    public void setMax_ma(float ma){
+        labelMaxma.setText("" + ma);
+    }
+
+    public void setMin_ma(float ma){
+        labelMinma.setText("" + ma);
+    }
+
+    public void setMax_v(float v){
+        labelMaxV.setText("" + v);
+    }
+
+    public void setMin_v(float v){
+        labelMinV.setText("" + v);
+    }
+
+    public void setDelta_ma(float ma){
+        labelDeltaMa.setText("" + ma);
+    }
+
+    public void setDelta_v(float v){
+        labelDeltaV.setText("" + v);
+    }
+
+    public void setSelectionDuration(float t){
+        labelSelectionDuration.setText("" + t);
+    }
+
+    public void selectionMah(float mah){
+        labelSelectionMah.setText("" + mah);
+    }
+
+    public void setSelectionAverageV(float v){
+        labelSelectionAverageV.setText("" + v);
+    }
+
+    public void setSelectionAverageMa(float ma){
+        labelSelectionAveragemA.setText("" + ma);
     }
 }
 
