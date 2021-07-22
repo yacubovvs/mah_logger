@@ -8,6 +8,8 @@ import ru.cubos.forms.elements.views.GraphPannel;
 import java.io.*;
 import java.util.ArrayList;
 
+import static ru.cubos.settings.commonSettings.LIVE_DATA_LENGTH;
+
 public class MainModel {
     public MainForm mainForm;
     File dataFile;
@@ -59,7 +61,12 @@ public class MainModel {
 
                 //System.out.println("Add data " + ma + " " + v);
 
-                data.addData(v, ma);
+                    data.addData(v, ma);
+
+                if(data.length()>=LIVE_DATA_LENGTH){
+                    data.dataList.remove(0);
+                }
+
                 dataUpdated = true;
 
 
@@ -83,15 +90,15 @@ public class MainModel {
                 if(dataUpdated){
                     // Update GraphPannel
                     ((GraphPannel)mainForm.graphPanel).updateGraph(MainModel.this);
-                    if(data.length()>0){
+                    if(data.length()>0 && ((GraphPannel)mainForm.graphPanel).isDrawing==false){
                         DataElement lastElement = data.dataList.get(data.dataList.size()-1);
                         mainForm.setCurrent_v(lastElement.v);
                         mainForm.setCurrent_ma(lastElement.ma);
                     }
-
+                    //System.out.println(data.dataList.size());
                 }
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(10);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
