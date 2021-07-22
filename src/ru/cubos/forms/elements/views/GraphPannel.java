@@ -57,7 +57,7 @@ public class GraphPannel extends JPanel {
             Point currentPoint_ma = new Point((int) (position*resolution_X), (int) ((dataElement.ma - data.ma_min)*resolution_MA_Y));
 
             Graphics2D g2d = (Graphics2D) g;
-            g2d.setStroke(new BasicStroke(3));
+            g2d.setStroke(new BasicStroke(2));
             g.setColor(new Color(176, 21, 0));
             g.drawLine(currentPoint_ma.x, getHeight() - currentPoint_ma.y, lastPoint_ma.x, getHeight() - lastPoint_ma.y);
             g.setColor(new Color(0, 16, 176));
