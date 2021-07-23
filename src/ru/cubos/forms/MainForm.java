@@ -33,6 +33,7 @@ public class MainForm extends JFrame {
     private JLabel labelSelectionDuration;
     private JLabel labelSelectionMah;
     private JLabel labelSelectionAveragemA;
+    private JButton recordButton;
     private boolean isConnected = false;
     SerialConnector serialConnector;
 
@@ -61,6 +62,7 @@ public class MainForm extends JFrame {
         setButtonSize(startButton);
         setButtonSize(resetButton);
         setButtonSize(liveButton);
+        setButtonSize(recordButton);
 
         addSerialConnectActions();
     }

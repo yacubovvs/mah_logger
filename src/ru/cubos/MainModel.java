@@ -90,10 +90,17 @@ public class MainModel {
                 if(dataUpdated){
                     // Update GraphPannel
                     ((GraphPannel)mainForm.graphPanel).updateGraph(MainModel.this);
-                    if(data.length()>0 && ((GraphPannel)mainForm.graphPanel).isDrawing==false){
-                        DataElement lastElement = data.dataList.get(data.dataList.size()-1);
+                    if(data!=null && data.length()>0 && ((GraphPannel)mainForm.graphPanel).isDrawing==false){
+
+                        DataElement lastElement = data.dataList.get(data.dataList.size()-2);
                         mainForm.setCurrent_v(lastElement.v);
                         mainForm.setCurrent_ma(lastElement.ma);
+                        mainForm.setMax_ma(data.ma_max);
+                        mainForm.setMin_ma(data.ma_min);
+                        mainForm.setMax_v(data.v_max);
+                        mainForm.setMin_v(data.v_min);
+                        mainForm.setDelta_ma(data.getDelta_ma());
+                        mainForm.setDelta_v(data.getDelta_v());
                     }
                     //System.out.println(data.dataList.size());
                 }
