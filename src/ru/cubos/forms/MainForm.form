@@ -269,28 +269,20 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="4b8e7" class="javax.swing.JButton" binding="stopButton" default-binding="true">
+              <component id="4b8e7" class="javax.swing.JButton" binding="ViewLogButton">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="View log"/>
+                </properties>
+              </component>
+              <component id="f93a" class="javax.swing.JButton" binding="startLoggingButton">
                 <constraints>
                   <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="Stop"/>
-                </properties>
-              </component>
-              <component id="f93a" class="javax.swing.JButton" binding="startButton" default-binding="true">
-                <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Start"/>
-                </properties>
-              </component>
-              <component id="2aa81" class="javax.swing.JButton" binding="resetButton" default-binding="true">
-                <constraints>
-                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Reset"/>
+                  <text value="Start logging"/>
                 </properties>
               </component>
               <component id="4139d" class="javax.swing.JButton" binding="liveButton">
@@ -298,15 +290,23 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="Live"/>
+                  <text value="Live view"/>
                 </properties>
               </component>
-              <component id="f67c8" class="javax.swing.JButton" binding="recordButton">
+              <component id="f67c8" class="javax.swing.JButton" binding="clearLogFileButton">
                 <constraints>
-                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="Record"/>
+                  <text value="Clear log file"/>
+                </properties>
+              </component>
+              <component id="2aa81" class="javax.swing.JButton" binding="resetLiveViewButton">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Reset live view"/>
                 </properties>
               </component>
             </children>

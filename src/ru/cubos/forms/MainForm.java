@@ -14,9 +14,9 @@ import java.awt.event.ActionListener;
 public class MainForm extends JFrame {
     private JLabel labelSelectionAverageV;
     private JPanel mainpanel;
-    private JButton stopButton;
-    private JButton startButton;
-    private JButton resetButton;
+    private JButton ViewLogButton;
+    private JButton startLoggingButton;
+    private JButton resetLiveViewButton;
     private JComboBox comboBoxComPorts;
     private JButton connectButton;
     private JButton updateButton;
@@ -33,7 +33,7 @@ public class MainForm extends JFrame {
     private JLabel labelSelectionDuration;
     private JLabel labelSelectionMah;
     private JLabel labelSelectionAveragemA;
-    private JButton recordButton;
+    private JButton clearLogFileButton;
     private boolean isConnected = false;
     SerialConnector serialConnector;
 
@@ -58,11 +58,11 @@ public class MainForm extends JFrame {
         //setExtendedState(MAXIMIZED_BOTH);
         setTitle("Новый замер");
 
-        setButtonSize(stopButton);
-        setButtonSize(startButton);
-        setButtonSize(resetButton);
+        setButtonSize(ViewLogButton);
+        setButtonSize(startLoggingButton);
+        setButtonSize(resetLiveViewButton);
         setButtonSize(liveButton);
-        setButtonSize(recordButton);
+        setButtonSize(clearLogFileButton);
 
         addSerialConnectActions();
         addButtonsActions();
@@ -76,7 +76,7 @@ public class MainForm extends JFrame {
     }
 
     void addButtonsActions(){
-        resetButton.addActionListener(new ActionListener() {
+        resetLiveViewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 clearLiveStream();

@@ -87,27 +87,31 @@ public class MainModel {
 
         dataUpdateThread.start();
 
-        liveData.addData(0, 0);
-        liveData.addData(0, 0);
-        liveData.addData(0, 5);
-        liveData.addData(0, 5);
-        liveData.addData(0, 10);
-        liveData.addData(0, 10);
-        liveData.addData(0, 5);
-        liveData.addData(0, 5);
-        liveData.addData(0, 0);
-        liveData.addData(0, 0);
-        liveData.addData(0, -5);
-        liveData.addData(0, -5);
-        liveData.addData(0, -10);
-        liveData.addData(0, -10);
-        liveData.addData(0, -5);
-        liveData.addData(0, -5);
-        liveData.addData(0, 0);
-        liveData.addData(0, 0);
-
+        /*
+        float k = 1;
+        liveData.addData(0, (float) (0.0*k));
+        liveData.addData(0, (float) (0.0*k));
+        liveData.addData(0, (float) (5.0*k));
+        liveData.addData(0, (float) (5.0*k));
+        liveData.addData(0, (float) (10.0*k));
+        liveData.addData(0, (float) (10.0*k));
+        liveData.addData(0, (float) (5.0*k));
+        liveData.addData(0, (float) (5.0*k));
+        liveData.addData(0, (float) (0.0*k));
+        liveData.addData(0, (float) (0.0*k));
+        liveData.addData(0, (float) (-5.0*k));
+        liveData.addData(0, (float) (-5.0*k));
+        liveData.addData(0, (float) (-10.0*k));
+        liveData.addData(0, (float) (-10.0*k));
+        liveData.addData(0, (float) (-5.0*k));
+        liveData.addData(0, (float) (-5.0*k));
+        liveData.addData(0, (float) (0.0*k));
+        liveData.addData(0, (float) (0.0*k));
+        liveData.addData(0, (float) (0.0*k));
 
         dataUpdated = true;
+        */
+
     }
 
     Thread dataUpdateThread = new Thread(new Runnable() {
