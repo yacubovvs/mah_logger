@@ -6,18 +6,18 @@ import ru.cubos.forms.MainForm;
 import ru.cubos.forms.elements.views.GraphPannel;
 
 import java.io.*;
-import java.util.ArrayList;
 
 import static ru.cubos.settings.commonSettings.LIVE_DATA_LENGTH;
 
 public class MainModel {
+
     public MainForm mainForm;
     File dataFile;
-    public Data data;
+    public Data liveData;
     boolean dataUpdated = false;
 
     public MainModel(){
-        data = new Data();
+        liveData = new Data();
         dataFile = new File("logs/data.txt");
         dataFile.delete();
 
@@ -34,6 +34,11 @@ public class MainModel {
 
         FileOutputStream finalFos = fos;
         mainForm = new MainForm(){
+            @Override
+            public void clearLiveStream(){
+                MainModel.this.clearLiveStream();
+            }
+
             @Override
             public void onGetDataString(String string){
                 String[] dataString = string.trim().split(";");
@@ -61,10 +66,10 @@ public class MainModel {
 
                 //System.out.println("Add data " + ma + " " + v);
 
-                    data.addData(v, ma);
+                    liveData.addData(v, ma);
 
-                if(data.length()>=LIVE_DATA_LENGTH){
-                    data.dataList.remove(0);
+                if(liveData.length()>=LIVE_DATA_LENGTH){
+                    liveData.dataList.remove(0);
                 }
 
                 dataUpdated = true;
@@ -81,6 +86,28 @@ public class MainModel {
         };
 
         dataUpdateThread.start();
+
+        liveData.addData(0, 0);
+        liveData.addData(0, 0);
+        liveData.addData(0, 5);
+        liveData.addData(0, 5);
+        liveData.addData(0, 10);
+        liveData.addData(0, 10);
+        liveData.addData(0, 5);
+        liveData.addData(0, 5);
+        liveData.addData(0, 0);
+        liveData.addData(0, 0);
+        liveData.addData(0, -5);
+        liveData.addData(0, -5);
+        liveData.addData(0, -10);
+        liveData.addData(0, -10);
+        liveData.addData(0, -5);
+        liveData.addData(0, -5);
+        liveData.addData(0, 0);
+        liveData.addData(0, 0);
+
+
+        dataUpdated = true;
     }
 
     Thread dataUpdateThread = new Thread(new Runnable() {
@@ -88,21 +115,22 @@ public class MainModel {
         public void run() {
             while (true){
                 if(dataUpdated){
-                    // Update GraphPannel
-                    ((GraphPannel)mainForm.graphPanel).updateGraph(MainModel.this);
-                    if(data!=null && data.length()>0 && ((GraphPannel)mainForm.graphPanel).isDrawing==false){
+                    try {
+                        // Update GraphPannel
+                        ((GraphPannel) mainForm.graphPanel).updateGraph(MainModel.this);
+                        if (liveData != null && liveData.length() > 0 && ((GraphPannel) mainForm.graphPanel).isDrawing == false) {
 
-                        DataElement lastElement = data.dataList.get(data.dataList.size()-2);
-                        mainForm.setCurrent_v(lastElement.v);
-                        mainForm.setCurrent_ma(lastElement.ma);
-                        mainForm.setMax_ma(data.ma_max);
-                        mainForm.setMin_ma(data.ma_min);
-                        mainForm.setMax_v(data.v_max);
-                        mainForm.setMin_v(data.v_min);
-                        mainForm.setDelta_ma(data.getDelta_ma());
-                        mainForm.setDelta_v(data.getDelta_v());
-                    }
-                    //System.out.println(data.dataList.size());
+                            DataElement lastElement = liveData.dataList.get(liveData.dataList.size() - 2);
+                            mainForm.setCurrent_v(lastElement.v);
+                            mainForm.setCurrent_ma(lastElement.ma);
+                            mainForm.setMax_ma(liveData.ma_max);
+                            mainForm.setMin_ma(liveData.ma_min);
+                            mainForm.setMax_v(liveData.v_max);
+                            mainForm.setMin_v(liveData.v_min);
+                            mainForm.setDelta_ma(liveData.getDelta_ma());
+                            mainForm.setDelta_v(liveData.getDelta_v());
+                        }
+                    }catch(Exception e){}
                 }
                 try {
                     Thread.sleep(10);
@@ -111,12 +139,19 @@ public class MainModel {
                 }
             }
         }
+
+
     });
 
     public void show() {
         mainForm.setVisible(true);
     }
 
-
+    synchronized public void clearLiveStream(){
+        dataUpdated = false;
+        liveData.reset();
+        ((GraphPannel) mainForm.graphPanel).updateGraph(MainModel.this);
+        dataUpdated = true;
+    }
 
 }

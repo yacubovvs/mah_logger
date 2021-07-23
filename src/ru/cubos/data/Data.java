@@ -32,12 +32,12 @@ public class Data {
     }
 
     public float getDelta_ma(){
-        if(ma_max==null ||ma_min==null) return 0;
+        if(ma_max==null || ma_min==null) return 0;
         return ma_max - ma_min;
     }
 
     public float getDelta_v(){
-        if(v_max==null ||v_min==null) return 0;
+        if(v_max==null || v_min==null) return 0;
         return v_max - v_min;
     }
 
@@ -48,5 +48,15 @@ public class Data {
         if(ma_min==null || ma<ma_min) ma_min = ma;
 
         dataList.add(new DataElement(v, ma));
+    }
+
+    public void reset() {
+        //List<DataElement> dataList = new ArrayList();
+        v_max = null;
+        v_min = null;
+        ma_max = null;
+        ma_min = null;
+        dataList.clear();
+
     }
 }

@@ -15,8 +15,12 @@ public class GraphPannel extends JPanel {
     int coordinate_steps_value =  10;
      */
 
+    private int getLineVerticalLinesinGraph(){
+        return 10;
+    }
+
     private int getCoordinatesSteps_inPx(){
-        return getHeight()/10;
+        return getHeight()/getLineVerticalLinesinGraph();
     }
 
     Data data = new Data();
@@ -33,12 +37,12 @@ public class GraphPannel extends JPanel {
         //g.drawString("Contours: ", 20, 20);
 
         // Drawing coordinates net
-
         int step = getCoordinatesSteps_inPx();
 
         g.setColor(new Color(176, 176, 176));
-        for(int i=0; i<getHeight(); i+=step){
-            g.drawLine(0,getHeight()-i-1,getWidth(),getHeight()-i-1);
+
+        for(int i=1; i<=getLineVerticalLinesinGraph(); i++){
+            g.drawLine(0,getHeight()*i/(getLineVerticalLinesinGraph()),getWidth(),getHeight()*i/(getLineVerticalLinesinGraph()));
         }
 
         // Draw data
@@ -52,33 +56,53 @@ public class GraphPannel extends JPanel {
 
         if(data.dataList.size()!=0) {
             DataElement dataElement = data.dataList.get(0);
-            Point lastPoint_v = new Point((int) 0, (int) ((dataElement.v - data.v_min) * resolution_V_Y));
-            Point lastPoint_ma = new Point((int) 0, (int) ((dataElement.ma - data.ma_min) * resolution_MA_Y));
+            //Point lastPoint_v = new Point((int) 0, (int) ((dataElement.v - data.v_min) * resolution_V_Y));
+            Point lastPoint_ma = new Point((int) 0, (int) ( ((dataElement.ma - data.get_ma_min()) * resolution_MA_Y) * 0.8 + 0.1*getHeight()) +1);
             for (int i = 1; i < data.dataList.size(); i++) {
                 dataElement = data.dataList.get(i);
 
-                Point currentPoint_v = new Point((int) (i * resolution_X), (int) ((dataElement.v - data.v_min) * resolution_V_Y));
-                Point currentPoint_ma = new Point((int) (i * resolution_X), (int) ((dataElement.ma - data.ma_min) * resolution_MA_Y));
+                //Point currentPoint_v = new Point((int) (i * resolution_X), (int) ((dataElement.v - data.v_min) * resolution_V_Y));
+                Point currentPoint_ma = new Point((int) (i * resolution_X), (int) ( ((dataElement.ma - data.get_ma_min()) * resolution_MA_Y) * 0.8 + 0.1*getHeight()) +1);
 
-                Graphics2D g2d = (Graphics2D) g;
-                g2d.setStroke(new BasicStroke(2));
+
+                //setLiveWidth(g, 2);
                 g.setColor(new Color(176, 21, 0));
                 g.drawLine(currentPoint_ma.x, getHeight() - currentPoint_ma.y, lastPoint_ma.x, getHeight() - lastPoint_ma.y);
-                g.setColor(new Color(0, 16, 176));
-                g.drawLine(currentPoint_v.x, getHeight() - currentPoint_v.y, lastPoint_v.x, getHeight() - lastPoint_v.y);
-                g2d.setStroke(new BasicStroke(1));
+                //g.setColor(new Color(0, 16, 176));
+                //g.drawLine(currentPoint_v.x, getHeight() - currentPoint_v.y, lastPoint_v.x, getHeight() - lastPoint_v.y);
+                //setLiveWidth(g, 1);
 
-                lastPoint_v = currentPoint_v;
+
+                //lastPoint_v = currentPoint_v;
                 lastPoint_ma = currentPoint_ma;
             }
+        }
+
+        //setLineWidth(g, 3);
+
+        for(int i=1; i<=getLineVerticalLinesinGraph(); i++){
+            int height = i*step;
+            g.setColor(new Color(255, 0, 0));
+            //float value_ma = data.getDelta_ma()/(getLineVerticalLinesinGraph()+1)*i; //- data.get_ma_min(); ///
+            //value_ma = (float)((int)value_ma*100)/100;
+            //g.drawString("" + value_ma, 10, height);
+            g.drawString("" + i, 10, height - 2);
+
+            //g.setColor(new Color(0, 0, 255));
+            //g.drawString("20", 10, getHeight()-i-10);
         }
 
         isDrawing = false;
         // drawing graph
     }
 
+    void setLineWidth(Graphics g, int lineWidth){
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setStroke(new BasicStroke(lineWidth));
+    }
+
     public void updateGraph(MainModel mainModel){
-        data = mainModel.data;
+        data = mainModel.liveData;
         //this.setVisible(true);
         //mainModel.mainForm.validate();
         //mainModel.mainForm.repaint();

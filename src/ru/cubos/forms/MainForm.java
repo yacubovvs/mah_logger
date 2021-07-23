@@ -65,6 +65,7 @@ public class MainForm extends JFrame {
         setButtonSize(recordButton);
 
         addSerialConnectActions();
+        addButtonsActions();
     }
 
     public void setButtonSize(JButton button){
@@ -74,6 +75,14 @@ public class MainForm extends JFrame {
         button.setMaximumSize(touchBtnSize);
     }
 
+    void addButtonsActions(){
+        resetButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                clearLiveStream();
+            }
+        });
+    }
     void addSerialConnectActions(){
         connectButton.addActionListener(new ActionListener() {
             @Override
@@ -137,6 +146,8 @@ public class MainForm extends JFrame {
         // TODO: place custom component creation code here
         graphPanel = new GraphPannel();
     }
+
+    public void clearLiveStream(){}
 
     public void setCurrent_ma(float ma){
         labelCurrentMa.setText("" + ma);
