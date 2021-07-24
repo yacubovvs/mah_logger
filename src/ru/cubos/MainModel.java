@@ -66,10 +66,12 @@ public class MainModel {
 
                 //System.out.println("Add data " + ma + " " + v);
 
+                if(mainForm.liveViewEnable) {
                     liveData.addData(v, ma);
 
-                if(liveData.length()>=LIVE_DATA_LENGTH){
-                    liveData.dataList.remove(0);
+                    if (liveData.length() >= LIVE_DATA_LENGTH) {
+                        liveData.dataList.remove(0);
+                    }
                 }
 
                 dataUpdated = true;
@@ -87,30 +89,30 @@ public class MainModel {
 
         dataUpdateThread.start();
 
-        /*
+        /* * /
         float k = 1;
-        liveData.addData(0, (float) (0.0*k));
-        liveData.addData(0, (float) (0.0*k));
-        liveData.addData(0, (float) (5.0*k));
-        liveData.addData(0, (float) (5.0*k));
-        liveData.addData(0, (float) (10.0*k));
-        liveData.addData(0, (float) (10.0*k));
-        liveData.addData(0, (float) (5.0*k));
-        liveData.addData(0, (float) (5.0*k));
-        liveData.addData(0, (float) (0.0*k));
-        liveData.addData(0, (float) (0.0*k));
-        liveData.addData(0, (float) (-5.0*k));
-        liveData.addData(0, (float) (-5.0*k));
-        liveData.addData(0, (float) (-10.0*k));
-        liveData.addData(0, (float) (-10.0*k));
-        liveData.addData(0, (float) (-5.0*k));
-        liveData.addData(0, (float) (-5.0*k));
-        liveData.addData(0, (float) (0.0*k));
-        liveData.addData(0, (float) (0.0*k));
-        liveData.addData(0, (float) (0.0*k));
+        liveData.addData((float) (4.18 - 4.18*0.5/(19.0/1)), (float) (0.0*k));
+        liveData.addData((float) (4.18 - 4.18*0.5/(19.0/2)), (float) (0.0*k));
+        liveData.addData((float) (4.18 - 4.18*0.5/(19.0/3)), (float) (5.0*k));
+        liveData.addData((float) (4.18 - 4.18*0.5/(19.0/4)), (float) (5.0*k));
+        liveData.addData((float) (4.18 - 4.18*0.5/(19.0/5)), (float) (10.0*k));
+        liveData.addData((float) (4.18 - 4.18*0.5/(19.0/6)), (float) (10.0*k));
+        liveData.addData((float) (4.18 - 4.18*0.5/(19.0/7)), (float) (5.0*k));
+        liveData.addData((float) (4.18 - 4.18*0.5/(19.0/8)), (float) (5.0*k));
+        liveData.addData((float) (4.18 - 4.18*0.5/(19.0/9)), (float) (0.0*k));
+        liveData.addData((float) (4.18 - 4.18*0.5/(19.0/10)), (float) (0.0*k));
+        liveData.addData((float) (4.18 - 4.18*0.5/(19.0/11)), (float) (-5.0*k));
+        liveData.addData((float) (4.18 - 4.18*0.5/(19.0/12)), (float) (-5.0*k));
+        liveData.addData((float) (4.18 - 4.18*0.5/(19.0/13)), (float) (-10.0*k));
+        liveData.addData((float) (4.18 - 4.18*0.5/(19.0/14)), (float) (-10.0*k));
+        liveData.addData((float) (4.18 - 4.18*0.5/(19.0/15)), (float) (-5.0*k));
+        liveData.addData((float) (4.18 - 4.18*0.5/(19.0/16)), (float) (-5.0*k));
+        liveData.addData((float) (4.18 - 4.18*0.5/(19.0/17)), (float) (0.0*k));
+        liveData.addData((float) (4.18 - 4.18*0.5/(19.0/18)), (float) (0.0*k));
+        liveData.addData((float) (4.18 - 4.18*0.5/(19.0/19)), (float) (0.0*k));
 
         dataUpdated = true;
-        */
+        // */
 
     }
 
@@ -121,19 +123,21 @@ public class MainModel {
                 if(dataUpdated){
                     try {
                         // Update GraphPannel
-                        ((GraphPannel) mainForm.graphPanel).updateGraph(MainModel.this);
-                        if (liveData != null && liveData.length() > 0 && ((GraphPannel) mainForm.graphPanel).isDrawing == false) {
+                        //if(mainForm.liveViewEnable) {
+                            ((GraphPannel) mainForm.graphPanel).updateGraph(MainModel.this);
+                            if (liveData != null && liveData.length() > 0 && ((GraphPannel) mainForm.graphPanel).isDrawing == false) {
 
-                            DataElement lastElement = liveData.dataList.get(liveData.dataList.size() - 2);
-                            mainForm.setCurrent_v(lastElement.v);
-                            mainForm.setCurrent_ma(lastElement.ma);
-                            mainForm.setMax_ma(liveData.ma_max);
-                            mainForm.setMin_ma(liveData.ma_min);
-                            mainForm.setMax_v(liveData.v_max);
-                            mainForm.setMin_v(liveData.v_min);
-                            mainForm.setDelta_ma(liveData.getDelta_ma());
-                            mainForm.setDelta_v(liveData.getDelta_v());
-                        }
+                                DataElement lastElement = liveData.dataList.get(liveData.dataList.size() - 2);
+                                mainForm.setCurrent_v(lastElement.v);
+                                mainForm.setCurrent_ma(lastElement.ma);
+                                mainForm.setMax_ma(liveData.ma_max);
+                                mainForm.setMin_ma(liveData.ma_min);
+                                mainForm.setMax_v(liveData.v_max);
+                                mainForm.setMin_v(liveData.v_min);
+                                mainForm.setDelta_ma(liveData.getDelta_ma());
+                                mainForm.setDelta_v(liveData.getDelta_v());
+                            }
+                        //}
                     }catch(Exception e){}
                 }
                 try {

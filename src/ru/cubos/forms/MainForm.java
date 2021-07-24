@@ -3,6 +3,7 @@ package ru.cubos.forms;
 import jssc.SerialPortException;
 import jssc.SerialPortList;
 import ru.cubos.connectors.SerialConnector;
+import ru.cubos.data.SelectionDataStructure;
 import ru.cubos.forms.elements.views.GraphPannel;
 
 import javax.swing.*;
@@ -34,8 +35,12 @@ public class MainForm extends JFrame {
     private JLabel labelSelectionMah;
     private JLabel labelSelectionAveragemA;
     private JButton clearLogFileButton;
+    private JButton hideV;
+    private JButton hideMa;
     private boolean isConnected = false;
     SerialConnector serialConnector;
+
+    public boolean liveViewEnable = true;
 
     public void onGetDataString(String string){
 
@@ -64,12 +69,42 @@ public class MainForm extends JFrame {
         setButtonSize(liveButton);
         setButtonSize(clearLogFileButton);
 
+        setButtonHalfSize(hideV);
+        setButtonHalfSize(hideMa);
+
         addSerialConnectActions();
         addButtonsActions();
+
+        liveStartStop(true);
+    }
+
+    void showHideV(){
+        ((GraphPannel)graphPanel).V_isVisible = !((GraphPannel)graphPanel).V_isVisible;
+        if(((GraphPannel)graphPanel).V_isVisible){
+            hideV.setText("Hide V");
+        }else{
+            hideV.setText("Show V");
+        }
+    }
+
+    void showHideMa(){
+        ((GraphPannel)graphPanel).mA_isVisible = !((GraphPannel)graphPanel).mA_isVisible;
+        if(((GraphPannel)graphPanel).mA_isVisible){
+            hideMa.setText("Hide mA");
+        }else{
+            hideMa.setText("Show mA");
+        }
     }
 
     public void setButtonSize(JButton button){
         Dimension touchBtnSize = new Dimension(300, 40);
+        button.setSize(touchBtnSize);
+        button.setMinimumSize(touchBtnSize);
+        button.setMaximumSize(touchBtnSize);
+    }
+
+    public void setButtonHalfSize(JButton button){
+        Dimension touchBtnSize = new Dimension(140, 40);
         button.setSize(touchBtnSize);
         button.setMinimumSize(touchBtnSize);
         button.setMaximumSize(touchBtnSize);
@@ -82,7 +117,38 @@ public class MainForm extends JFrame {
                 clearLiveStream();
             }
         });
+
+        liveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                liveStartStop(!liveViewEnable);
+            }
+        });
+
+        hideV.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                showHideV();
+            }
+        });
+
+        hideMa.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                showHideMa();
+            }
+        });
     }
+
+    public void liveStartStop(boolean stop){
+        this.liveViewEnable = stop;
+        if(liveViewEnable){
+            liveButton.setText("Stop live view");
+        }else{
+            liveButton.setText("Live view");
+        }
+    }
+
     void addSerialConnectActions(){
         connectButton.addActionListener(new ActionListener() {
             @Override
@@ -144,7 +210,15 @@ public class MainForm extends JFrame {
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
-        graphPanel = new GraphPannel();
+        graphPanel = new GraphPannel(){
+            @Override
+            public void onSelectionDataGot(SelectionDataStructure selectionDataStructure){
+                setSelectionDuration(selectionDataStructure.getSelectionDuration_ms()/1000);
+                selectionMah(selectionDataStructure.getSelection_mah());
+                setSelectionAverageV(selectionDataStructure.average_v);
+                setSelectionAverageMa(selectionDataStructure.average_ma);
+            }
+        };
     }
 
     public void clearLiveStream(){}
