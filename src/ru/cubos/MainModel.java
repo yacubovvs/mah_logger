@@ -8,6 +8,7 @@ import ru.cubos.forms.elements.views.GraphPannel;
 import java.io.*;
 
 import static ru.cubos.settings.commonSettings.LIVE_DATA_LENGTH;
+import static ru.cubos.settings.commonSettings.newGotMessage;
 
 public class MainModel {
 
@@ -41,6 +42,8 @@ public class MainModel {
 
             @Override
             public void onGetDataString(String string){
+
+                if(mainForm.liveViewEnable)  newGotMessage();
                 String[] dataString = string.trim().split(";");
 
                 float ma = 0;
@@ -77,13 +80,13 @@ public class MainModel {
                 dataUpdated = true;
 
 
-                /*
+
                 try {
                     finalFos.write((string+"\n").getBytes());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                */
+
             }
         };
 
