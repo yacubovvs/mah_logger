@@ -47,7 +47,7 @@ public class MainForm extends JFrame {
     }
 
     public MainForm() {
-
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         serialConnector = new SerialConnector(){
             @Override
             public void onStringRead(String string){
