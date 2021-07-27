@@ -5,6 +5,7 @@ import jssc.SerialPortList;
 import ru.cubos.connectors.SerialConnector;
 import ru.cubos.data.SelectionDataStructure;
 import ru.cubos.forms.elements.views.GraphPannel;
+import ru.cubos.forms.elements.views.ScrollPannel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,6 +38,7 @@ public class MainForm extends JFrame {
     private JButton clearLogFileButton;
     private JButton hideV;
     private JButton hideMa;
+    private JPanel scrollPannel;
     private boolean isConnected = false;
     SerialConnector serialConnector;
 
@@ -219,6 +221,8 @@ public class MainForm extends JFrame {
                 setSelectionAverageMa(selectionDataStructure.average_ma);
             }
         };
+
+        scrollPannel = new ScrollPannel();
     }
 
     public void clearLiveStream(){}

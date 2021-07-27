@@ -19,7 +19,7 @@ public class MainModel {
 
     public MainModel(){
         liveData = new Data();
-        dataFile = new File("logs/data.txt");
+        dataFile = new File("logs/data_.txt");
         dataFile.delete();
 
         FileOutputStream fos = null;
@@ -156,6 +156,13 @@ public class MainModel {
 
     public void show() {
         mainForm.setVisible(true);
+        try {
+            Thread.sleep(100);
+            mainForm.validate();
+            mainForm.repaint();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     synchronized public void clearLiveStream(){
